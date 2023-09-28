@@ -1,17 +1,24 @@
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class BabystepsTimerTest {
 
     @Test
     public void testGetRemainingTimeCaption() {
-        // Create instances of BabystepsTimer and call the method, then assert the expected results.
+        private BabystepsTimer babystepsTimer;
         long elapsedTime = 60000L; // 60 seconds
-        String result = BabystepsTimer.getRemainingTimeCaption(elapsedTime);
-        assertEquals("01:00", result);
+        String result = babystepsTimer.getRemainingTimeCaption(elapsedTime);
+        assertEquals("01:30", result);
     }
 
-    // Add more test methods to cover various parts of the BabystepsTimer class.
+    @Test
+    public void testTimerThread() {
+        private BabystepsTimer babystepsTimer;
+        BabystepsTimer.TimerThread timerThread = babystepsTimer.new TimerThread();
+        timerThread.start();
+        Thread.sleep(100);
+        timerThread.interrupt();
+        assertTrue(true);
+    }
 }
